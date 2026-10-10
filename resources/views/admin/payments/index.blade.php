@@ -5,7 +5,7 @@
         <div class="container-fluid px-4">
             <div class="my-3">
                 <h1 class="mt-4 d-inline">Payments</h1>
-                <a href="" class="btn btn-primary float-end">Create Payment</a>
+                <a href="{{ route('admin.payments.create') }}" class="btn btn-primary float-end">Create Payment</a>
             </div>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
@@ -25,6 +25,7 @@
                                 <th>Logo</th>
                                 <th>AccNo</th>
                                 <th>AccName</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -34,6 +35,7 @@
                                 <th>Logo</th>
                                 <th>AccNo</th>
                                 <th>AccName</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -47,6 +49,10 @@
                                     <td>{{ $payment->logo }}</td>
                                     <td>{{ $payment->acc_no }}</td>
                                     <td>{{ $payment->acc_name }}</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-danger delete" data-id="{{$payment->id}}">Delete</a>
+                                        <a href="{{route('admin.payments.edit', $payment->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                    </td>
                                 </tr>
                             @endforeach 
                         </tbody>
@@ -55,5 +61,39 @@
             </div>
         </div>
     </main>
+
+    <!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header bg-danger text-light">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete...</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h1>Are you sure delete?</h1>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <form action=""method="POST" id="deleteForm">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Yes</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('tbody').on('click','.delete',function(){
+
+            let id = $(this).data('id');
+            $('#deleteForm').attr('action',`payments/${id}`);
+            $('#deleteModal').modal('show');
+        })
+    })
+</script>
 
 @endsection

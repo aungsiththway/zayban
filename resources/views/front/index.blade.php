@@ -39,7 +39,7 @@
                                         <a class="btn btn-sm btn-outline-dark mt-auto" href="{{ route('shop.item', $item->id) }}">Detail</a>
                                     </div>
                                     <div class="col-md-8">
-                                        <button class="btn btn-sm btn-dark">Add to Cart</button>
+                                        <button class="btn btn-sm btn-dark addToCart" data-id="{{$item->id}}" data-name="{{$item->name}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}" data-image="{{$item->image}}">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
