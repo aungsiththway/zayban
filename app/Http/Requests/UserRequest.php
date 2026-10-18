@@ -28,7 +28,8 @@ class UserRequest extends FormRequest
             'profile' => ['required'],
             'email' => ['required'],
             'password' => ['required'],
-            'password_confirmation' => ['required'],
+            'password_confirmation' => ['required', 'same:password'],
+            'role' => ['required', 'in:user,staff,admin'],
         ];
     }
 }

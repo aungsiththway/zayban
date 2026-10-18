@@ -49,7 +49,7 @@
                                     <td>{{ $j++ }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->profile }}</td>
+                                    <td><img src="{{ $user->profile }}" width="50"></td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role }}</td>
                                     <td>

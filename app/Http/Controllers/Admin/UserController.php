@@ -33,21 +33,20 @@ class UserController extends Controller
     {
         // dd($request);
         
-        $data = $request->all();
-        $data['role'] = 'user';
-        $users = User::create($data);
+        $users = User::create($request->all());
 
 
         //file upload
         $file_name = time() . '.' . $request->profile->extension(); //28971491827.jpg
 
         //folder ထဲကို upload လုပ်မယ်
-        $upload = $request->profile->move(public_path('images/users/'), $file_name);
+        $upload = $request->profile->move(public_path('images/profiles/'), $file_name);
 
         if ($upload){
-            $users->profile = "/images/users/" . $file_name;
+            $users->profile = "/images/profiles/" . $file_name;
         }
-
+        $users->password =Hash::make($request->password);
+        
         $users->save();
 
         return redirect()->route('admin.users.index');

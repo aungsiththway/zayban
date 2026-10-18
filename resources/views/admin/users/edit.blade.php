@@ -86,6 +86,32 @@
                     </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select name="role" id="role" class="form-select @error('role') is-invalid @enderror" required>
+                    <option value="" disabled selected>Choose Role</option>
+                    <option value="user" 
+                        {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>
+                    User
+                    </option>
+                    <option value="staff"
+                        {{ old('role', $user->role) == 'staff' ? 'selected' : '' }}>
+                        Staff
+                    </option>
+                    <option value="admin"
+                        {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>
+                        Admin
+                    </option>
+                </select>
+                @error('role')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                @enderror
+            </div>
+
+            
+
             <div class="d-grid gap-2">
                 <button class="btn btn-primary" type="submit">Save</button>
             </div>

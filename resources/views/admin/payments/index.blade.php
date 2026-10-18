@@ -46,7 +46,7 @@
                                 <tr>
                                     <td>{{ $j++ }}</td>
                                     <td>{{ $payment->pay }}</td>
-                                    <td>{{ $payment->logo }}</td>
+                                    <td><img src="{{ $payment->logo }}" width="50"></td>
                                     <td>{{ $payment->acc_no }}</td>
                                     <td>{{ $payment->acc_name }}</td>
                                     <td>
